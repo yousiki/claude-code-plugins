@@ -1,0 +1,8 @@
+{
+  "name": "tombi-lsp",
+  "version": "0.1.0",
+  "description": "Tombi TOML language server, launched through uvx / pipx run without requiring a global install.",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/tombi-lsp",
+  "license": "MIT"
+}

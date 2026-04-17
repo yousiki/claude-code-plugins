@@ -1,0 +1,8 @@
+{
+  "name": "vscode-html-lsp",
+  "version": "0.1.0",
+  "description": "VS Code HTML language server, launched through bunx / pnpm dlx / npx without requiring a global install.",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/vscode-html-lsp",
+  "license": "MIT"
+}

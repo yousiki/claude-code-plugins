@@ -1,0 +1,8 @@
+{
+  "name": "biome-formatter",
+  "version": "0.1.0",
+  "description": "Format JS, TS, JSON, and JSONC files on save using Biome via bunx/pnpm/npx.",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/biome-formatter",
+  "license": "MIT"
+}
