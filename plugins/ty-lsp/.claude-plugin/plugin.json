@@ -1,0 +1,8 @@
+{
+  "name": "ty-lsp",
+  "version": "0.1.0",
+  "description": "Astral ty (Rust-based Python type checker) as a language server. BETA: ty is pre-1.0 and breaking changes ship between patch releases — pin versions in the launcher after validating them.",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/ty-lsp",
+  "license": "MIT"
+}

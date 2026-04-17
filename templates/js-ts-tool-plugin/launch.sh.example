@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+# JS/TS launcher — copy to plugins/<name>/scripts/launch-<name>.sh and edit PKG.
+# The script is the `command` value in marketplace.json; Claude Code passes
+# additional args (e.g. `--stdio`) through `args` and we forward them with "$@".
+set -eu
+
+PKG="<npm-package>"          # e.g. typescript-language-server, @upstash/context7-mcp
+# Optional extra packages bunx/npx should install alongside PKG (peer deps that
+# the tool expects to find at runtime). Leave empty if not needed.
+PEERS=""                     # e.g. "typescript"
+
+try() { command -v "$1" >/dev/null 2>&1; }
+
+# bunx / npx accept multiple `-p <pkg>` flags to widen the install set;
+# pnpm dlx accepts comma-separated packages via `-p`.
+if try bunx; then
+  if [ -n "$PEERS" ]; then
+    # shellcheck disable=SC2086
+    exec bunx $(for p in $PEERS; do printf -- '-p %s ' "$p"; done) "$PKG" "$@"
+  fi
+  exec bunx "$PKG" "$@"
+fi
+if try pnpm; then
+  if [ -n "$PEERS" ]; then
+    exec pnpm dlx -p "$(echo "$PEERS" | tr ' ' ',')" "$PKG" -- "$@"
+  fi
+  exec pnpm dlx "$PKG" -- "$@"
+fi
+if try npx; then
+  if [ -n "$PEERS" ]; then
+    # shellcheck disable=SC2086
+    exec npx -y $(for p in $PEERS; do printf -- '-p %s ' "$p"; done) "$PKG" -- "$@"
+  fi
+  exec npx -y "$PKG" -- "$@"
+fi
+
+cat >&2 <<EOF
+error: none of bunx / pnpm / npx found on PATH
+tried to launch: $PKG $*
+install one of:
+  - https://bun.sh
+  - https://pnpm.io
+  - https://nodejs.org (ships npx)
+EOF
+exit 127
