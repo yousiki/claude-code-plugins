@@ -29,6 +29,8 @@ print((d.get("tool_input") or {}).get("file_path") or "")
 }
 
 FILE=$(extract_file_path || true)
+[ -n "$FILE" ] || exit 0
+[ -f "$FILE" ] || exit 0
 
 case "$FILE" in
   *.js | *.mjs | *.cjs | *.jsx | *.ts | *.mts | *.cts | *.tsx | *.json | *.json5 | *.jsonc | *.css | *.scss | *.less | *.html | *.htm | *.md | *.markdown | *.mdx | *.yaml | *.yml) ;;

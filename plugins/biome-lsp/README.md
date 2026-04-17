@@ -24,11 +24,11 @@ Claude Code passes the language-server startup arguments via the marketplace ent
 
 This plugin registers:
 
-- `.js`
-- `.ts`
-- `.tsx`
-- `.jsx`
-- `.json`
+- JS family: `.js`, `.mjs`, `.cjs`, `.jsx`
+- TS family: `.ts`, `.tsx`, `.mts`, `.cts`
+- JSON family: `.json`, `.jsonc`
+- CSS: `.css`
+- GraphQL: `.graphql`, `.gql`
 
 Runtime configuration (the `lspServers` block) is declared at the marketplace level in the root `.claude-plugin/marketplace.json` entry for this plugin.
 

@@ -29,6 +29,8 @@ print((d.get("tool_input") or {}).get("file_path") or "")
 }
 
 FILE=$(extract_file_path || true)
+[ -n "$FILE" ] || exit 0
+[ -f "$FILE" ] || exit 0
 
 case "$FILE" in
   *.md | *.markdown | *.mdx) ;;
