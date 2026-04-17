@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "Bash language server, launched via bunx / pnpm dlx / npx fallback without requiring a global install.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/bash-lsp",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/bash-lsp",
   "license": "MIT"
 }

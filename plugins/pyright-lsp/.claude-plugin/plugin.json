@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "Pyright Python language server. Marketplace-adapted launcher uses bunx / pnpm dlx / npx — pyright is npm-first, so we route through the JS/TS chain regardless of the language analyzed.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/pyright-lsp",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/pyright-lsp",
   "license": "MIT"
 }

@@ -8,7 +8,7 @@ Language servers, MCP servers, hooks, and workflow helpers &mdash; each tool boo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-6B4FBB)](https://docs.claude.com/en/docs/claude-code)
-[![Plugins](https://img.shields.io/badge/plugins-6-brightgreen)](#plugins)
+[![Plugins](https://img.shields.io/badge/plugins-23-brightgreen)](#plugins)
 [![Maintenance](https://img.shields.io/badge/status-active-success)](#)
 
 [Install](#install) &nbsp;·&nbsp; [Plugins](#plugins) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp; [Layout](#repository-layout) &nbsp;·&nbsp; [Contributing](#contributing)
@@ -37,6 +37,13 @@ Grouped by [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). A
 | [`pyright-lsp`](plugins/pyright-lsp) | Python | JS/TS | Microsoft Pyright (npm-distributed) |
 | [`basedpyright-lsp`](plugins/basedpyright-lsp) | Python | Python | Stricter community fork of Pyright |
 | [`ty-lsp`](plugins/ty-lsp) | Python _(beta)_ | Python | Astral's Rust-based type checker; pre-1.0, expect churn |
+| [`biome-lsp`](plugins/biome-lsp) | JS, TS, JSON | JS/TS | Biome language server (lint + format diagnostics) |
+| [`bash-lsp`](plugins/bash-lsp) | Bash, shell | JS/TS | `bash-language-server`; integrates with `shellcheck` when on `PATH` |
+| [`yaml-lsp`](plugins/yaml-lsp) | YAML | JS/TS | Red Hat `yaml-language-server` |
+| [`tombi-lsp`](plugins/tombi-lsp) | TOML | Python | `tombi` LSP (chose over Taplo &mdash; Taplo's npm pkg lacks the LSP subcommand) |
+| [`vscode-html-lsp`](plugins/vscode-html-lsp) | HTML | JS/TS | `vscode-langservers-extracted` (HTML binary) |
+| [`vscode-css-lsp`](plugins/vscode-css-lsp) | CSS, SCSS, LESS | JS/TS | `vscode-langservers-extracted` (CSS binary) |
+| [`vscode-json-lsp`](plugins/vscode-json-lsp) | JSON, JSONC | JS/TS | `vscode-langservers-extracted` (JSON binary) |
 
 ### MCP Servers
 
@@ -44,11 +51,23 @@ Grouped by [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). A
 | --- | --- | --- |
 | [`context7`](plugins/context7) | Up-to-date library documentation lookup (Upstash Context7) | JS/TS |
 
-### Hooks
+### Hooks &mdash; Formatters
 
-| Plugin | Trigger | Runtime chain |
+Auto-format on `PostToolUse` of `Write` / `Edit` / `MultiEdit`. Subset variants exist so you can pick only the languages you want formatted.
+
+| Plugin | Files formatted | Runtime chain |
 | --- | --- | --- |
-| [`ruff-formatter`](plugins/ruff-formatter) | `PostToolUse` on `Write` / `Edit` / `MultiEdit` of `.py` files | Python |
+| [`ruff-formatter`](plugins/ruff-formatter) | `.py` | Python |
+| [`biome-formatter`](plugins/biome-formatter) | `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.jsonc` | JS/TS |
+| [`biome-js-formatter`](plugins/biome-js-formatter) | `.js`, `.jsx`, `.ts`, `.tsx` | JS/TS |
+| [`biome-json-formatter`](plugins/biome-json-formatter) | `.json`, `.jsonc` | JS/TS |
+| [`prettier-formatter`](plugins/prettier-formatter) | All prettier-supported extensions | JS/TS |
+| [`prettier-js-formatter`](plugins/prettier-js-formatter) | `.js`, `.jsx`, `.ts`, `.tsx` | JS/TS |
+| [`prettier-json-formatter`](plugins/prettier-json-formatter) | `.json` | JS/TS |
+| [`prettier-css-formatter`](plugins/prettier-css-formatter) | `.css`, `.scss`, `.less` | JS/TS |
+| [`prettier-html-formatter`](plugins/prettier-html-formatter) | `.html`, `.htm` | JS/TS |
+| [`prettier-markdown-formatter`](plugins/prettier-markdown-formatter) | `.md`, `.mdx` | JS/TS |
+| [`prettier-yaml-formatter`](plugins/prettier-yaml-formatter) | `.yaml`, `.yml` | JS/TS |
 
 > More plugins &mdash; slash commands, agents, additional MCP servers &mdash; will be added over time as I adopt them.
 
@@ -57,7 +76,7 @@ Grouped by [plugin kind](https://docs.claude.com/en/docs/claude-code/plugins). A
 Inside Claude Code:
 
 ```text
-/plugin marketplace add yousiki/claude-code-plugins
+/plugin marketplace add yousiki/claude-plugins
 /plugin install <plugin-name>@yousiki-claude-plugins
 ```
 
@@ -78,7 +97,7 @@ Three rules every plugin follows:
 2. **Fallback by _distribution_ ecosystem, not by _language_ ecosystem.** Pyright is a Python tool but ships on npm &mdash; so it routes through the JS/TS chain. Basedpyright ships on PyPI &mdash; so it uses the Python chain.
 3. **Metadata-only plugin folders.** `plugin.json` wires the launcher path; the launcher resolves the binary. Nothing is vendored, nothing is pinned beyond the tool's own versioning.
 
-Full rationale: [marketplace design doc](docs/superpowers/specs/2026-04-17-marketplace-design.md).
+Formatter hooks additionally follow a **graceful-miss** contract: if no runtime on the fallback chain is present, the hook exits `0` silently rather than blocking the write.
 
 ## Repository Layout
 
@@ -95,9 +114,8 @@ Full rationale: [marketplace design doc](docs/superpowers/specs/2026-04-17-marke
 │       └── README.md
 ├── templates/                    # copy-paste scaffolds (not executable)
 │   ├── js-ts-tool-plugin/
-│   └── python-tool-plugin/
-├── docs/
-│   └── superpowers/specs/        # design documents
+│   ├── python-tool-plugin/
+│   └── formatter-hook-plugin/
 ├── LICENSE
 └── README.md
 ```
@@ -108,8 +126,8 @@ This marketplace is primarily for my own use, but the scaffolding is deliberatel
 
 To add a new plugin:
 
-1. **Pick the runtime chain** based on how the tool is _distributed_, not what it analyzes (see [design doc](docs/superpowers/specs/2026-04-17-marketplace-design.md#choose-runtime-by-launcher-ecosystem)).
-2. **Copy the matching template** from [`templates/`](templates/) into `plugins/<name>/` and replace every `<placeholder>` with the concrete value.
+1. **Pick the runtime chain** based on how the tool is _distributed_, not what it analyzes. Rule of thumb: if it ships on npm (like Pyright), use the JS/TS chain; if it ships on PyPI (like Basedpyright), use the Python chain.
+2. **Copy the matching template** from [`templates/`](templates/) into `plugins/<name>/` and replace every `<placeholder>` with the concrete value. Formatter hooks start from [`templates/formatter-hook-plugin/`](templates/formatter-hook-plugin/).
 3. **Register the plugin** by appending an entry to [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 4. **Verify the fallback chain** by unsetting each runtime in turn (`PATH` manipulation works) and confirming the launcher still succeeds with any single one present.
 

@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "Upstash Context7 MCP server for up-to-date documentation lookup. Marketplace-adapted launcher uses bunx / pnpm dlx / npx fallback so no global install is required.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/context7",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/context7",
   "license": "MIT"
 }

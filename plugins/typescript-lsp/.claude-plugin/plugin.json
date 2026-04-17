@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "TypeScript / JavaScript language server (typescript-language-server). Marketplace-adapted launcher uses bunx / pnpm dlx / npx fallback and pulls the typescript peer dep fresh — no global install required.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/typescript-lsp",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/typescript-lsp",
   "license": "MIT"
 }

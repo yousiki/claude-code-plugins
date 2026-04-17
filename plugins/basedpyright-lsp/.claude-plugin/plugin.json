@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "Basedpyright Python language server (community pyright fork with stricter defaults). Launched through uvx / pipx run — no global install required.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/basedpyright-lsp",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/basedpyright-lsp",
   "license": "MIT"
 }

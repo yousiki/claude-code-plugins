@@ -16,5 +16,5 @@ At least one of bun / pnpm / node must be on `PATH`.
 
 ## Notes
 
-- The wrapper always pulls a fresh `typescript`. If your project has a specific TypeScript version pinned in `node_modules`, this may diverge. See the design doc's Open Question 5 for the trade-off; revisit if it bites.
+- The wrapper always pulls a fresh `typescript`. If your project has a specific TypeScript version pinned in `node_modules`, this may diverge — revisit the launcher if it bites.
 - Language server starts with `--stdio`; Claude Code supplies that via the `args` field in the marketplace entry.

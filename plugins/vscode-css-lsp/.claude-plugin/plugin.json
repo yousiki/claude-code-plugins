@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "VS Code CSS language server, launched through bunx / pnpm dlx / npx without requiring a global install.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/vscode-css-lsp",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-css-lsp",
   "license": "MIT"
 }

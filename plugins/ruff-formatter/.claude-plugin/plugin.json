@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "Auto-format Python files with ruff after Claude writes them. Runs as a PostToolUse hook; uses uvx (preferred) or pipx run to fetch ruff fresh, so no global install is required.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/ruff-formatter",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/ruff-formatter",
   "license": "MIT"
 }

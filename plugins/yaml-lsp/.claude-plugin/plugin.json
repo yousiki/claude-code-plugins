@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "YAML language server, launched via bunx / pnpm dlx / npx fallback without requiring a global install.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/yaml-lsp",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/yaml-lsp",
   "license": "MIT"
 }

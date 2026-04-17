@@ -12,10 +12,11 @@ Reference skeleton for plugins that format a file after Claude writes it. Copy t
 
 Use this for PostToolUse format-on-write plugins: tools that should run after `Write`, `Edit`, or `MultiEdit` and rewrite the touched file in place. It is the formatter-hook counterpart to `../js-ts-tool-plugin/` and `../python-tool-plugin/`.
 
-The template follows the hook contract described in:
+The template follows the marketplace's hook contract:
 
-- `docs/superpowers/specs/2026-04-17-marketplace-design.md`
-- `docs/superpowers/specs/2026-04-17-marketplace-phase2-design.md`
+- **No global installs.** Tools are fetched fresh through `bunx` / `pnpm dlx` / `npx` (JS/TS) or `uvx` / `pipx run` (Python) on every invocation.
+- **Graceful miss.** If no runtime on the fallback chain is available, the hook exits `0` with a stderr warning rather than blocking the write.
+- **Disjoint extension scopes.** Each formatter owns only the extensions it can safely rewrite; scopes are whitelisted in the `case "$FILE"` block.
 
 ## What to customize
 

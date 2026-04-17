@@ -4,7 +4,7 @@ Microsoft [Pyright](https://github.com/microsoft/pyright) language server, packa
 
 ## Why the JS/TS chain for a Python tool?
 
-Pyright is distributed primarily on npm; the PyPI `pyright` package is a thin bootstrap that downloads the npm release at runtime. Running it through `bunx` directly is faster and more predictable than going through PyPI. The plugin's runtime chain follows the launcher ecosystem of the tool, not the language it analyzes — see the design doc.
+Pyright is distributed primarily on npm; the PyPI `pyright` package is a thin bootstrap that downloads the npm release at runtime. Running it through `bunx` directly is faster and more predictable than going through PyPI. The plugin's runtime chain follows the launcher ecosystem of the tool, not the language it analyzes.
 
 If you want a PyPI-first experience, use `basedpyright-lsp` instead.
 

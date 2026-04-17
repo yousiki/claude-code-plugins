@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "description": "Format JS and TS files on save using Biome via bunx/pnpm/npx.",
   "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-code-plugins/tree/main/plugins/biome-js-formatter",
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/biome-js-formatter",
   "license": "MIT"
 }
