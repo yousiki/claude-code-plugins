@@ -82,8 +82,8 @@ Conventions:
 
 ```json
 {
-  "name": "yousiki-language-tools",
-  "owner": { "name": "yousiki", "email": "siqi.yang@shanda.com" },
+  "name": "yousiki-claude-plugins",
+  "owner": { "name": "yousiki", "email": "you.siki@outlook.com" },
   "plugins": [
     { "name": "context7",        "source": "./plugins/context7",        "category": "development", "strict": false, "mcpServers": { "…": "…" } },
     { "name": "typescript-lsp",  "source": "./plugins/typescript-lsp",  "category": "development", "strict": false, "lspServers": { "…": "…" } },
