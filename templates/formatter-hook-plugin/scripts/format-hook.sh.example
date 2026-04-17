@@ -1,0 +1,55 @@
+#!/usr/bin/env sh
+set -eu
+
+try() { command -v "$1" >/dev/null 2>&1; }
+
+# Prefer python3 for robust JSON parsing; fall back to a sed/grep pipeline.
+extract_file_path() {
+  if try python3; then
+    python3 -c '
+import json, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    sys.exit(0)
+print((d.get("tool_input") or {}).get("file_path") or "")
+' 2>/dev/null
+  else
+    # Flatten newlines and grab the first file_path occurrence.
+    tr '\n' ' ' \
+      | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' \
+      | head -1 \
+      | sed 's/.*"\([^"]*\)"$/\1/'
+  fi
+}
+
+FILE=$(extract_file_path || true)
+[ -f "$FILE" ] || exit 0
+
+case "$FILE" in
+  # EDIT ME: extensions this plugin owns
+  *.js | *.ts) ;;
+  *) exit 0 ;;
+esac
+
+# EDIT ME: pick JS/TS chain (bunx/pnpm/npx) or Python chain (uvx/pipx)
+if try bunx; then
+  exec bunx -p EDIT_ME_PACKAGE EDIT_ME_BINARY format --write -- "$FILE"
+fi
+if try pnpm; then
+  exec pnpm --package=EDIT_ME_PACKAGE dlx EDIT_ME_BINARY -- format --write -- "$FILE"
+fi
+if try npx; then
+  exec npx -y --package=EDIT_ME_PACKAGE EDIT_ME_BINARY format --write -- "$FILE"
+fi
+
+# if try uvx; then
+#   exec uvx EDIT_ME_TOOL format "$FILE"
+# fi
+# if try pipx; then
+#   exec pipx run EDIT_ME_TOOL format "$FILE"
+# fi
+
+# EDIT ME: <plugin-name> prefix
+echo "EDIT_ME-formatter: skipped ($FILE) - install a supported runtime to enable." >&2
+exit 0

@@ -1,0 +1,22 @@
+{
+  "name": "EDIT_ME-formatter",
+  "source": "./plugins/EDIT_ME-formatter",
+  "description": "…",
+  "version": "0.1.0",
+  "category": "development",
+  "strict": false,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/EDIT_ME-format-hook.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
