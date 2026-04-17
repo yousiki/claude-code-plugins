@@ -1,0 +1,26 @@
+{
+  "name": "<plugin-name>",
+  "source": "./plugins/<plugin-name>",
+  "description": "<one-line description>",
+  "version": "0.1.0",
+  "category": "development",
+  "strict": false,
+
+  "// choose ONE of the runtime blocks below": "and delete the others",
+
+  "lspServers": {
+    "<lsp-id>": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-<plugin-name>.sh",
+      "args": ["--stdio"],
+      "extensionToLanguage": {
+        ".ext": "language-id"
+      }
+    }
+  },
+
+  "mcpServers": {
+    "<mcp-id>": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-<plugin-name>.sh"
+    }
+  }
+}

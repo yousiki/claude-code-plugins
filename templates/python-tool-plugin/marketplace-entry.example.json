@@ -1,0 +1,36 @@
+{
+  "name": "<plugin-name>",
+  "source": "./plugins/<plugin-name>",
+  "description": "<one-line description>",
+  "version": "0.1.0",
+  "category": "development",
+  "strict": false,
+
+  "// choose ONE of the runtime blocks below": "and delete the others",
+
+  "lspServers": {
+    "<lsp-id>": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-<plugin-name>.sh",
+      "args": ["--stdio"],
+      "extensionToLanguage": {
+        ".py": "python",
+        ".pyi": "python"
+      }
+    }
+  },
+
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-<plugin-name>.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

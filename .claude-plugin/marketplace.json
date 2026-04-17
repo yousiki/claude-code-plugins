@@ -1,0 +1,122 @@
+{
+  "name": "yousiki-language-tools",
+  "owner": {
+    "name": "yousiki",
+    "email": "siqi.yang@shanda.com"
+  },
+  "plugins": [
+    {
+      "name": "basedpyright-lsp",
+      "source": "./plugins/basedpyright-lsp",
+      "description": "Basedpyright Python language server (stricter pyright fork). uvx / pipx run fallback.",
+      "version": "0.1.0",
+      "category": "development",
+      "strict": false,
+      "lspServers": {
+        "basedpyright": {
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-basedpyright-lsp.sh",
+          "args": ["--stdio"],
+          "extensionToLanguage": {
+            ".py": "python",
+            ".pyi": "python"
+          }
+        }
+      }
+    },
+    {
+      "name": "context7",
+      "source": "./plugins/context7",
+      "description": "Upstash Context7 MCP server for up-to-date documentation lookup. bunx / pnpm dlx / npx fallback.",
+      "version": "0.1.0",
+      "category": "development",
+      "strict": false,
+      "mcpServers": {
+        "context7": {
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-context7.sh"
+        }
+      }
+    },
+    {
+      "name": "pyright-lsp",
+      "source": "./plugins/pyright-lsp",
+      "description": "Microsoft Pyright Python language server. Routed through the JS/TS chain because pyright is npm-first.",
+      "version": "0.1.0",
+      "category": "development",
+      "strict": false,
+      "lspServers": {
+        "pyright": {
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-pyright-lsp.sh",
+          "args": ["--stdio"],
+          "extensionToLanguage": {
+            ".py": "python",
+            ".pyi": "python"
+          }
+        }
+      }
+    },
+    {
+      "name": "ruff-formatter",
+      "source": "./plugins/ruff-formatter",
+      "description": "Auto-format Python files with ruff after Claude writes them. PostToolUse hook; uvx / pipx run fallback.",
+      "version": "0.1.0",
+      "category": "development",
+      "strict": false,
+      "hooks": {
+        "PostToolUse": [
+          {
+            "matcher": "Write|Edit|MultiEdit",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "${CLAUDE_PLUGIN_ROOT}/scripts/ruff-format-hook.sh",
+                "timeout": 30
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ty-lsp",
+      "source": "./plugins/ty-lsp",
+      "description": "Astral ty (Rust-based Python type checker) as an LSP. BETA — pre-1.0, breaking changes ship between patch releases.",
+      "version": "0.1.0",
+      "category": "development",
+      "strict": false,
+      "lspServers": {
+        "ty": {
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-ty-lsp.sh",
+          "args": ["server"],
+          "extensionToLanguage": {
+            ".py": "python",
+            ".pyi": "python"
+          }
+        }
+      }
+    },
+    {
+      "name": "typescript-lsp",
+      "source": "./plugins/typescript-lsp",
+      "description": "typescript-language-server for TypeScript / JavaScript. bunx / pnpm dlx / npx fallback, pulls the typescript peer dep fresh.",
+      "version": "0.1.0",
+      "category": "development",
+      "strict": false,
+      "lspServers": {
+        "typescript": {
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-typescript-lsp.sh",
+          "args": ["--stdio"],
+          "extensionToLanguage": {
+            ".ts": "typescript",
+            ".tsx": "typescriptreact",
+            ".js": "javascript",
+            ".jsx": "javascriptreact",
+            ".mts": "typescript",
+            ".cts": "typescript",
+            ".mjs": "javascript",
+            ".cjs": "javascript"
+          }
+        }
+      }
+    }
+  ]
+}

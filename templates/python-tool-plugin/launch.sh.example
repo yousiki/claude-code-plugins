@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+# Python launcher — copy to plugins/<name>/scripts/launch-<name>.sh and edit
+# PKG / BIN / PY_MODULE. The script is the `command` value in marketplace.json;
+# Claude Code forwards `args` as "$@".
+set -eu
+
+PKG="<pypi-package>"         # e.g. basedpyright, ruff, ty
+BIN="<console-script>"       # e.g. basedpyright-langserver; often equals PKG
+PY_MODULE=""                 # optional: module name for `python3 -m` fallback;
+                             # leave empty when the tool has no `__main__`.
+
+try() { command -v "$1" >/dev/null 2>&1; }
+
+# --from works even when PKG == BIN, so it's safe to always pass.
+if try uvx; then
+  exec uvx --from "$PKG" "$BIN" "$@"
+fi
+if try pipx; then
+  exec pipx run --spec "$PKG" "$BIN" "$@"
+fi
+if [ -n "$PY_MODULE" ] && try python3; then
+  exec python3 -m "$PY_MODULE" "$@"
+fi
+
+{
+  echo "error: no supported Python runtime found on PATH"
+  echo "tried to launch: $BIN (from $PKG)"
+  echo "install one of:"
+  echo "  - https://docs.astral.sh/uv/ (provides uvx)"
+  echo "  - https://pipx.pypa.io/"
+  if [ -n "$PY_MODULE" ]; then
+    echo "  - a system python3 (will run: python3 -m $PY_MODULE)"
+  fi
+} >&2
+exit 127
