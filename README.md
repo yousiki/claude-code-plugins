@@ -1,6 +1,6 @@
 <div align="center">
 
-# yousiki's Claude Code Plugins
+# yousiki's Claude Plugins
 
 **A personal marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins.**
 
