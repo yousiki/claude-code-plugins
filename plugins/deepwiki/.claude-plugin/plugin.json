@@ -1,6 +1,6 @@
 {
   "name": "deepwiki",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Devin DeepWiki MCP server for AI-grounded Q&A over any public GitHub repository's wiki. Remote HTTP transport, no auth, no local runtime required.",
   "author": { "name": "yousiki" },
   "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/deepwiki",
