@@ -1,0 +1,8 @@
+{
+  "name": "browseros",
+  "version": "0.1.0",
+  "description": "BrowserOS MCP server for driving the local BrowserOS agentic browser from Claude Code. Local streamable-HTTP transport (127.0.0.1:9000 by default, set per your BrowserOS MCP settings).",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/browseros",
+  "license": "MIT"
+}

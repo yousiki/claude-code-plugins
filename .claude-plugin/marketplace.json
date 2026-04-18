@@ -131,6 +131,19 @@
       }
     },
     {
+      "name": "browseros",
+      "source": "./plugins/browseros",
+      "description": "BrowserOS MCP server for driving the local BrowserOS agentic browser. Local streamable-HTTP transport; BrowserOS must be running with its MCP server enabled.",
+      "version": "0.1.0",
+      "category": "development",
+      "mcpServers": {
+        "browseros": {
+          "type": "http",
+          "url": "http://127.0.0.1:9000/mcp"
+        }
+      }
+    },
+    {
       "name": "context7",
       "source": "./plugins/context7",
       "description": "Upstash Context7 MCP server for up-to-date documentation lookup. bunx / pnpm dlx / npx fallback.",
