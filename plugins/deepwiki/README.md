@@ -17,5 +17,4 @@ Private repo access is out of scope for this plugin — use Devin's own authenti
 ## Files
 
 - `.claude-plugin/plugin.json` — plugin metadata.
-
-The `mcpServers` block is declared at the marketplace level in the root `.claude-plugin/marketplace.json` entry for this plugin.
+- `.mcp.json` — MCP server declaration (remote streamable HTTP, `https://mcp.deepwiki.com/mcp`).

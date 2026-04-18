@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-context7.sh"
+    }
+  }
+}

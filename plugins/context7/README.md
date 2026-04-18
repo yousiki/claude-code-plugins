@@ -17,9 +17,8 @@ At least one must be on `PATH`. If none is present, Claude Code will see the MCP
 ## Files
 
 - `.claude-plugin/plugin.json` — plugin metadata.
+- `.mcp.json` — MCP server declaration (stdio; points at the launcher below).
 - `scripts/launch-context7.sh` — runtime fallback wrapper, invoked over stdio.
-
-The `mcpServers` block is declared at the marketplace level in the root `.claude-plugin/marketplace.json` entry for this plugin.
 
 ## Smoke test
 
