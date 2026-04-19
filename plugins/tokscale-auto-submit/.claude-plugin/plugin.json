@@ -1,0 +1,8 @@
+{
+  "name": "tokscale-auto-submit",
+  "version": "0.1.0",
+  "description": "Auto-submit tokscale usage stats (Claude Code + Codex CLI) on every SessionStart and SessionEnd. Detached via nohup so the session never waits on it.",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/tokscale-auto-submit",
+  "license": "MIT"
+}

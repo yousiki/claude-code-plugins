@@ -460,6 +460,37 @@
           }
         }
       }
+    },
+    {
+      "name": "tokscale-auto-submit",
+      "source": "./plugins/tokscale-auto-submit",
+      "description": "Auto-submit tokscale usage stats (Claude Code + Codex CLI) on every SessionStart and SessionEnd. Detached via nohup so the session never waits on it.",
+      "version": "0.1.0",
+      "category": "development",
+      "hooks": {
+        "SessionStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "${CLAUDE_PLUGIN_ROOT}/scripts/submit-hook.sh",
+                "timeout": 10
+              }
+            ]
+          }
+        ],
+        "SessionEnd": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "${CLAUDE_PLUGIN_ROOT}/scripts/submit-hook.sh",
+                "timeout": 10
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
