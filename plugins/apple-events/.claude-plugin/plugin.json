@@ -1,0 +1,8 @@
+{
+  "name": "apple-events",
+  "version": "0.1.0",
+  "description": "Native macOS Reminders and Calendar integration via EventKit (FradSer/mcp-server-apple-events). npx-launched; macOS + Node 18+ + Xcode CLT required.",
+  "author": { "name": "yousiki" },
+  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/apple-events",
+  "license": "MIT"
+}

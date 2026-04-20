@@ -6,6 +6,13 @@
   },
   "plugins": [
     {
+      "name": "apple-events",
+      "source": "./plugins/apple-events",
+      "description": "Native macOS Reminders and Calendar integration via EventKit (FradSer/mcp-server-apple-events). npx-launched; macOS + Node 18+ + Xcode CLT required.",
+      "version": "0.1.0",
+      "category": "development"
+    },
+    {
       "name": "basedpyright-lsp",
       "source": "./plugins/basedpyright-lsp",
       "description": "Basedpyright Python language server (stricter pyright fork). uvx / pipx run fallback.",
