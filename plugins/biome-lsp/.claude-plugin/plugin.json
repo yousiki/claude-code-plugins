@@ -1,8 +1,29 @@
 {
-  "name": "biome-lsp",
-  "version": "0.1.1",
-  "description": "Biome language server.",
-  "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/biome-lsp",
-  "license": "MIT"
+	"name": "biome-lsp",
+	"version": "0.1.2",
+	"description": "Biome language server.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/biome-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"biome": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-biome-lsp.sh",
+			"args": ["lsp-proxy"],
+			"extensionToLanguage": {
+				".js": "javascript",
+				".jsx": "javascriptreact",
+				".mjs": "javascript",
+				".cjs": "javascript",
+				".ts": "typescript",
+				".tsx": "typescriptreact",
+				".mts": "typescript",
+				".cts": "typescript",
+				".json": "json",
+				".jsonc": "jsonc",
+				".css": "css",
+				".graphql": "graphql",
+				".gql": "graphql"
+			}
+		}
+	}
 }

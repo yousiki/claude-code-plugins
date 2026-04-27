@@ -1,8 +1,17 @@
 {
-  "name": "tombi-lsp",
-  "version": "0.1.1",
-  "description": "Tombi TOML language server.",
-  "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/tombi-lsp",
-  "license": "MIT"
+	"name": "tombi-lsp",
+	"version": "0.1.2",
+	"description": "Tombi TOML language server.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/tombi-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"tombi": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-tombi-lsp.sh",
+			"args": ["lsp"],
+			"extensionToLanguage": {
+				".toml": "toml"
+			}
+		}
+	}
 }

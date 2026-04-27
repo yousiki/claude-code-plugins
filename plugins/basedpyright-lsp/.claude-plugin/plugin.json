@@ -1,8 +1,18 @@
 {
-  "name": "basedpyright-lsp",
-  "version": "0.1.1",
-  "description": "Basedpyright Python language server (community pyright fork with stricter defaults).",
-  "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/basedpyright-lsp",
-  "license": "MIT"
+	"name": "basedpyright-lsp",
+	"version": "0.1.2",
+	"description": "Basedpyright Python language server (community pyright fork with stricter defaults).",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/basedpyright-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"basedpyright": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-basedpyright-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".py": "python",
+				".pyi": "python"
+			}
+		}
+	}
 }

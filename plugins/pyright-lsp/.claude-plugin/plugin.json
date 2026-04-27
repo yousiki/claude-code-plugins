@@ -1,8 +1,18 @@
 {
-  "name": "pyright-lsp",
-  "version": "0.1.1",
-  "description": "Pyright Python language server.",
-  "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/pyright-lsp",
-  "license": "MIT"
+	"name": "pyright-lsp",
+	"version": "0.1.2",
+	"description": "Pyright Python language server.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/pyright-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"pyright": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-pyright-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".py": "python",
+				".pyi": "python"
+			}
+		}
+	}
 }

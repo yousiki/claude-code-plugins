@@ -1,8 +1,19 @@
 {
-  "name": "vscode-css-lsp",
-  "version": "0.1.1",
-  "description": "VS Code CSS language server.",
-  "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-css-lsp",
-  "license": "MIT"
+	"name": "vscode-css-lsp",
+	"version": "0.1.2",
+	"description": "VS Code CSS language server.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-css-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"vscode-css": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-css-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".css": "css",
+				".scss": "scss",
+				".less": "less"
+			}
+		}
+	}
 }

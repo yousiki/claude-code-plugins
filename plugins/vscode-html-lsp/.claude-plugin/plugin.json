@@ -1,8 +1,18 @@
 {
-  "name": "vscode-html-lsp",
-  "version": "0.1.1",
-  "description": "VS Code HTML language server.",
-  "author": { "name": "yousiki" },
-  "homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-html-lsp",
-  "license": "MIT"
+	"name": "vscode-html-lsp",
+	"version": "0.1.2",
+	"description": "VS Code HTML language server.",
+	"author": { "name": "yousiki" },
+	"homepage": "https://github.com/yousiki/claude-plugins/tree/main/plugins/vscode-html-lsp",
+	"license": "MIT",
+	"lspServers": {
+		"vscode-html": {
+			"command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch-vscode-html-lsp.sh",
+			"args": ["--stdio"],
+			"extensionToLanguage": {
+				".html": "html",
+				".htm": "html"
+			}
+		}
+	}
 }
